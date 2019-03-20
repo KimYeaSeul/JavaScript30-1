@@ -18,7 +18,7 @@
             <span class="sound">hithat</span>
         </div>
         <div data-key="68" class="key">
-            <kbd>A</kbd>
+            <kbd>D</kbd>
             <span class="sound">kick</span>
         </div>
         <div data-key="70" class="key">
@@ -42,7 +42,7 @@
             <span class="sound">tom</span>
         </div>
         <div data-key="76" class="key">
-            <kbd>G</kbd>
+            <kbd>Ll</kbd>
             <span class="sound">tink</span>
         </div>
     </div>
@@ -55,33 +55,30 @@
     <audio data-key="74" src="sounds/snare.wav"></audio>
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
-    
+
     <script>
+    //함수선언&호출식, this 의 필요성.
     function playSound(e){
         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
         const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-        if(!audio) return;  // 
-        // audio.currentTime = 0;
-        audio.play();
+        if(!audio) return;  //정의된 data-key 가 아닐경우 함수 빠져나옴.
+        audio.currentTime = 0; //currentTime을 offset 하여 소리연속발생
+        audio.play(); //정의된 data-key일 경우 오디오 연주
         console.log(e);
-        key.classList.add('playing');
+        key.classList.add('playing'); // class="playing" 추가하여 transition css 적용
     }
 
     function removeTransition(e){
         if(e.propertyName !== 'transform') return;
-        console.log(e);
+        // console.log(e);
         // this.classList.remove('playing');
         e.target.classList.remove('playing');
     }
 
-    const keys = document.querySelectorAll('.key');
-    // const keys2 = Array.from(document.querySelectorAll('.key'));
-    console.log(keys);
+    const keys = document.querySelectorAll('.key'); //key div 선택
 
-    keys.forEach(key(key.addEventListener('transitionend', removeTransition)){
-        console.log(key);
-        });
-    window.addEventListener('keydown', playSound);
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //각 div에 이벤트 적용 (함수선언)
+    window.addEventListener('keydown', playSound);//DOM에 keydown이벤트 적용 (함수선언)
     </script>
 </body>
 </html>
