@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,6 +7,21 @@
 </head>
 <body>
 <script>
+  const pressed = [];
+  const secretCode = 'wesbos';
+
+
+  window.addEventListener('keyup',(e)=>{
+    console.log(e.key);
+    pressed.push(e.key);
+    pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+    if(pressed.join('').includes(secretCode)){
+      console.log('Did it');
+      cornify_add();
+    }
+    console.log(pressed);
+  })
+  // that's the basics of getting up a key sequencing detection, store them in an array, and then check every single time that they key up if it matches what you're looking for.
 </script>
 </body>
 </html>

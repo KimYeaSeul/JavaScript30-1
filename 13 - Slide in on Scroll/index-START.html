@@ -57,7 +57,26 @@
         if (callNow) func.apply(context, args);
       };
     }
-
+    const sliderImages = document.querySelectorAll('.slide-in');
+   
+    function checkSlide(e){
+      sliderImages.forEach(sliderImage => {
+        //half way throungh the image
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height/2;
+        //bottom of the image
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        const isNotSCrolledPast = window.scrollY < imageBottom;
+        if(isHalfShown && isNotSCrolledPast) {
+          sliderImage.classList.add('active');
+        }else{
+          sliderImage.classList.remove('active');
+        }
+      });
+    }
+//일주일 뒤에 자신이 변수가 어디에 쓰이는건지 확신할 수 없기 때문에 변수에 내가 읽을 수 있게 모든것을 넣는것을 좋아한다.(?)
+//포인트 : 높이 구하는거?
+    window.addEventListener('scroll', debounce(checkSlide));
   </script>
 
   <style>
