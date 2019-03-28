@@ -74,9 +74,10 @@
         }
       });
     }
+    window.addEventListener('scroll', debounce(checkSlide));
+    
 //일주일 뒤에 자신이 변수가 어디에 쓰이는건지 확신할 수 없기 때문에 변수에 내가 읽을 수 있게 모든것을 넣는것을 좋아한다.(?)
 //포인트 : 높이 구하는거?
-    window.addEventListener('scroll', debounce(checkSlide));
   </script>
 
   <style>
