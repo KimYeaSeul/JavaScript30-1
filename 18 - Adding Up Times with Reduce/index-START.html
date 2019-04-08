@@ -182,6 +182,28 @@
     </li>
   </ul>
 <script>
+  const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
+  //배열이 아니여서 map사용 불가. convert this sucker from a nodeless into an array. nodeless란?
+  //timeNodes(nodeless)를 배열로 만드는 2가지 방법
+  //1. spread 사용 [...document.querySelectorAll('[data-time]')];
+  //2. Array.from 사용 Array.from(document.querySelectorAll('[data-time]'));
+  const seconds = timeNodes  
+    .map(node => node.dataset.time)
+    .map(timeCode => {
+      //parseFloat() 함수는 문자열을 분석해 부동소수점 실수로 반환
+      const [mins, secs] = timeCode.split(':').map(parseFloat); // String이다.
+      return ( mins * 60 ) + secs;
+      // console.log(mins, secs);
+    })
+    .reduce((total, videSeconds) => total + videSeconds); 
+    
+  let secondsLeft = seconds;
+
+  const hours = Math.floor(secondsLeft / 3600); // 4.9 hour => 4 hour
+  secondsLeft = secondsLeft % 3600; // 나머지(mod) 개념
+  const mins =  Math.floor(secondsLeft / 60);
+  secondsLeft = secondsLeft % 60; // 초
+  console.log(hours, mins, secondsLeft);
 </script>
 </body>
 </html>
