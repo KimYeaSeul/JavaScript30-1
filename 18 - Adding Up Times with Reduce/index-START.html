@@ -183,7 +183,7 @@
   </ul>
 <script>
   const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
-  //배열이 아니여서 map사용 불가. convert this sucker from a nodeless into an array. nodeless란?
+  //배열이 아니여서 map사용 불가(NodeList). convert this sucker from a nodeless into an array. nodeless란?
   //timeNodes(nodeless)를 배열로 만드는 2가지 방법
   //1. spread 사용 [...document.querySelectorAll('[data-time]')];
   //2. Array.from 사용 Array.from(document.querySelectorAll('[data-time]'));
@@ -196,7 +196,7 @@
       // console.log(mins, secs);
     })
     .reduce((total, videSeconds) => total + videSeconds); 
-    
+
   let secondsLeft = seconds;
 
   const hours = Math.floor(secondsLeft / 3600); // 4.9 hour => 4 hour
