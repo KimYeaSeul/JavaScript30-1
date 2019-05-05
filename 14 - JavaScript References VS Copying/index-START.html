@@ -81,10 +81,13 @@
       }
     }
 
-    const dev = Object.assign({}, wes);
+    const dev = Object.assign({}, wes, {number : 99});
 
     const dev2 = JSON.parse(JSON,stringfy(wes));
-    //객체가 아닌 string 반환후 바로 json.parse로 객체로 만들어 버림
+    // 객체가 아닌 string 반환후 바로 json.parse로 객체로 만들어 버림
+    // 함수같은 parse 할 수 없는 값이 있을 수 있기 때문에 지향하진 않음! 위험한것임
+    // 따라서 함수나 lodash(외부라이브러리) 사용 권장, _.deepclone
+    // 객체의 변경을 관리햐야 할 때 중요함
   </script>
 
 </body>

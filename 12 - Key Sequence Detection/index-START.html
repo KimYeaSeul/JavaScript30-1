@@ -16,7 +16,7 @@
     pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length); // 비밀키 크기만큼 배열 자르기
     if(pressed.join('').includes(secretCode)){ // 배열을 join했을때 비밀키가 포함되어있다면
       console.log('Did it'); // 해냈어!
-      cornify_add(); // 유니콘 등장
+      cornify_add(); // 유니콘 등장 라이브러리
     }
     console.log(pressed);
   })
