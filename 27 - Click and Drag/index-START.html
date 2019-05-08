@@ -35,6 +35,38 @@
   </div>
 
 <script>
+  const slider = document.querySelector('.items');
+  let isDown = false; //클릭을 했는지 안했는지 알게해주는 flag 변수
+  let startX; //mousedown 한 시작점 위치
+  let scrollLeft;
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.pageX- slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    //for(let key in slider){ console.log(key, slider[key]) } // wonder kind of property
+    console.log(slider.scrollLeft);
+  });
+
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+
+  slider.addEventListener('mousemove', (e) => {
+    if(!isDown) return; //stop the function from running
+    e.preventDefault();
+    const x= e.pageX - slider.offsetLeft;
+    const walk = x - startX; //slide 간격
+    slider.scrollLeft = scrollLeft - walk;
+  });
+
 </script>
 
   </body>
